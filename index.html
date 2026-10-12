@@ -85,5 +85,172 @@ footer{padding:35px 18px;text-align:center;color:#7f897f;border-top:1px solid rg
 </main>
 
 <footer>© IKEKKERS / IKEKKAZ</footer>
+
+<!-- IKEKKERS メンバー紹介・スマホ保存機能 -->
+<style>
+  #ik-members {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 16px;
+    font-family: sans-serif;
+  }
+  #ik-members h2 { text-align: center; }
+  #ik-member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .ik-card {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .ik-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .ik-no-photo {
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: #eee;
+    border-radius: 10px;
+    font-size: 36px;
+  }
+  #ik-add-form {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  #ik-add-form input, #ik-add-form button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+</style>
+
+<section id="ik-members">
+  <h2>IKEKKERS メンバー紹介</h2>
+  <div id="ik-member-list"></div>
+
+  <h3>メンバーを追加</h3>
+  <form id="ik-add-form">
+    <label>メンバーの名前
+      <input id="ik-name" required maxlength="40"
+        placeholder="名前を入力してください">
+    </label>
+    <label>メンバーの写真
+      <input id="ik-photo" type="file" accept="image/*">
+    </label>
+    <button type="submit">メンバーを追加する</button>
+  </form>
+  <p id="ik-message" aria-live="polite"></p>
+</section>
+
+<script>
+(function () {
+  const key = "ikekkers_members_v1";
+  const initial = [
+    "池ちゃん", "ナイト", "ぱんだ院長", "内藤裕",
+    "サイバーりかぴー", "なおと", "ふっか"
+  ];
+  const list = document.getElementById("ik-member-list");
+  const form = document.getElementById("ik-add-form");
+  const nameInput = document.getElementById("ik-name");
+  const photoInput = document.getElementById("ik-photo");
+  const message = document.getElementById("ik-message");
+
+  let members = [];
+  try {
+    const saved = localStorage.getItem(key);
+    members = saved ? JSON.parse(saved) :
+      initial.map(name => ({ name, photo: "" }));
+    if (!Array.isArray(members)) throw new Error("invalid");
+  } catch (e) {
+    members = initial.map(name => ({ name, photo: "" }));
+  }
+
+  function render() {
+    list.replaceChildren();
+    members.forEach(member => {
+      const card = document.createElement("div");
+      card.className = "ik-card";
+      if (member.photo) {
+        const img = document.createElement("img");
+        img.src = member.photo;
+        img.alt = member.name + "の写真";
+        card.appendChild(img);
+      } else {
+        const blank = document.createElement("div");
+        blank.className = "ik-no-photo";
+        blank.textContent = "📷";
+        card.appendChild(blank);
+      }
+      const title = document.createElement("p");
+      title.textContent = member.name;
+      card.appendChild(title);
+      list.appendChild(card);
+    });
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(key, JSON.stringify(members));
+      return true;
+    } catch (e) {
+      message.textContent =
+        "保存できませんでした。写真のサイズを小さくして再度お試しください。";
+      return false;
+    }
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const name = nameInput.value.trim();
+    if (!name) return;
+
+    const file = photoInput.files[0];
+    if (file && file.size > 1200000) {
+      message.textContent =
+        "写真が大きすぎます。1.2MB以下の写真を選んでください。";
+      return;
+    }
+
+    function addMember(photo) {
+      members.push({ name, photo: photo || "" });
+      if (!save()) {
+        members.pop();
+        return;
+      }
+      render();
+      form.reset();
+      message.textContent = "メンバーを追加しました！";
+    }
+
+    if (!file) {
+      addMember("");
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      message.textContent = "画像ファイルを選んでください。";
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => addMember(reader.result);
+    reader.onerror = () => {
+      message.textContent = "写真を読み込めませんでした。";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  render();
+})();
+</script>
+
 </body>
 </html>
