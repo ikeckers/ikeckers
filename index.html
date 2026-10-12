@@ -24,7 +24,7 @@ h1{font-size:clamp(34px,8vw,76px);margin:28px 0 8px;line-height:1;color:var(--gr
 section{max-width:1100px;margin:auto;padding:72px 18px}
 .section-title{font-size:34px;margin:0 0 10px;color:var(--green)}
 .section-sub{color:var(--muted);margin:0 0 30px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
 .card{background:linear-gradient(145deg,#111711,#080b09);border:1px solid rgba(183,255,0,.17);border-radius:18px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.3)}
 .card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
 .card-body{padding:14px 15px 18px}
@@ -34,7 +34,7 @@ section{max-width:1100px;margin:auto;padding:72px 18px}
 .panel{padding:26px;border:1px solid rgba(183,255,0,.17);border-radius:18px;background:rgba(13,18,15,.72)}
 .panel p{line-height:1.9;color:#d6ddd5}
 footer{padding:35px 18px;text-align:center;color:#7f897f;border-top:1px solid rgba(183,255,0,.12)}
-@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}nav a{margin-left:10px;font-size:12px}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.about{grid-template-columns:1fr}nav a{margin-left:10px;font-size:12px}}
 @media(max-width:480px){.grid{gap:10px}.card h3{font-size:16px}.section-title{font-size:28px}}
 </style>
 </head>
@@ -58,19 +58,18 @@ footer{padding:35px 18px;text-align:center;color:#7f897f;border-top:1px solid rg
 
   <section id="members">
     <h2 class="section-title">MEMBERS</h2>
-    <p class="section-sub">IKECKERS メンバー</p>
-    <div class="grid">
-      <article class="card"><img src="ikechan.jpg" alt="イケちゃん"><div class="card-body"><h3>イケちゃん</h3><p>IKEIKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="night.jpg" alt="ナイト"><div class="card-body"><h3>ナイト</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="panda.jpg" alt="ぱんだ院長"><div class="card-body"><h3>ぱんだ院長</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="naito_yu.jpg" alt="内藤裕"><div class="card-body"><h3>内藤裕</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="cyber_rikapy.jpg" alt="サイバーりかぴー"><div class="card-body"><h3>サイバーりかぴー</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="naoto.jpg" alt="なおと"><div class="card-body"><h3>なおと</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="fukka.jpg" alt="ふっか"><div class="card-body"><h3>ふっか</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="msama.jpg" alt="M様"><div class="card-body"><h3>M様</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="kamekawa.jpg" alt="亀川"><div class="card-body"><h3>亀川</h3><p>IKECKERS MEMBER</p></div></article>
-      <article class="card"><img src="mocchan.jpg" alt="もっちゃん"><div class="card-body"><h3>もっちゃん</h3><p>IKECKERS MEMBER</p></div></article>
-   </div>
+    <p class="section-sub">IKECKERS メンバー</p><div class="grid">
+  <article class="card"><img src="ikechan.jpg" alt="池ちゃん"><div class="card-body"><h3>池ちゃん</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="night.jpg" alt="ナイト"><div class="card-body"><h3>ナイト</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="cyber_rikapy.jpg" alt="サイバーりかぴー"><div class="card-body"><h3>サイバーりかぴー</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="naito_yu.jpg" alt="内藤裕"><div class="card-body"><h3>内藤裕</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="naoto.jpg" alt="なおと"><div class="card-body"><h3>なおと</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="kamekawa.jpg" alt="亀川"><div class="card-body"><h3>亀川</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="fukka.jpg" alt="ふっか"><div class="card-body"><h3>ふっか</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="msama.jpg" alt="M様"><div class="card-body"><h3>M様</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="mocchan.jpg" alt="もっちゃん"><div class="card-body"><h3>もっちゃん</h3><p>IKECKERS MEMBER</p></div></article>
+  <article class="card"><img src="panda.jpg" alt="ぱんだ院長"><div class="card-body"><h3>ぱんだ院長</h3><p>IKECKERS MEMBER</p></div></article>
+    </div>
   </section>
 
   <section id="about">
