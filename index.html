@@ -98,9 +98,7 @@ footer{padding:35px 18px;text-align:center;color:#7f897f;border-top:1px solid rg
   }
   #ik-members h2 { text-align: center; }
   #ik-member-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 12px;
+  display: none;
   }
   .ik-card {
     padding: 12px;
@@ -157,10 +155,7 @@ footer{padding:35px 18px;text-align:center;color:#7f897f;border-top:1px solid rg
 <script>
 (function () {
   const key = "ikekkers_members_v1";
-  const initial = [
-    "池ちゃん", "ナイト", "ぱんだ院長", "内藤裕",
-    "サイバーりかぴー", "なおと", "ふっか"
-  ];
+  const initial = [];
   const list = document.getElementById("ik-member-list");
   const form = document.getElementById("ik-add-form");
   const nameInput = document.getElementById("ik-name");
